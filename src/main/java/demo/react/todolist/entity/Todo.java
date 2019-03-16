@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -25,6 +22,6 @@ public class Todo extends BaseEntity {
     private Integer id;
 
     private String content;
-
-    private boolean status;
+    @Column(name = "status", columnDefinition = "bit(1) default 0")
+    private boolean status = false;
 }

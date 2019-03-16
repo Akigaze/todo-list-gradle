@@ -22,8 +22,7 @@ public class TodoService {
         return this.repository.findAll();
     }
 
-    public boolean saveTodo(Todo todo) {
-        Todo saved = this.repository.save(todo);
-        return true;
+    public Todo saveTodo(Todo todo) {
+        return this.repository.save(todo);
     }
 }
