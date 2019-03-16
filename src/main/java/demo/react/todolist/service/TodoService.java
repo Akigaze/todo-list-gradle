@@ -25,4 +25,9 @@ public class TodoService {
     public Todo saveTodo(Todo todo) {
         return this.repository.save(todo);
     }
+
+    public Todo findTodoById(Integer id) {
+        Todo todo = repository.findById(id).orElse(null);
+        return todo;
+    }
 }

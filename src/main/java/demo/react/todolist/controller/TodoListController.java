@@ -30,4 +30,16 @@ public class TodoListController {
         }
         return null;
     }
+
+    @PutMapping("/{id}")
+    public TodoDto updateTodo(@PathVariable("id") Integer id, @RequestBody TodoDto dto){
+        Todo updatingTodo = service.findTodoById(id);
+        if (!ObjectUtils.isEmpty(updatingTodo)){
+            Todo todo = dto.convert();
+            todo.setId(id);
+            Todo updated = service.saveTodo(todo);
+            return TodoDto.transform(updated);
+        }
+        return null;
+    }
 }
