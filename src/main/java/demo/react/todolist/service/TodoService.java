@@ -27,7 +27,15 @@ public class TodoService {
     }
 
     public Todo findTodoById(Integer id) {
-        Todo todo = repository.findById(id).orElse(null);
-        return todo;
+        return repository.findById(id).orElse(null);
+    }
+
+    public Boolean deleteTodoById(Integer id) {
+        try {
+            repository.deleteById(id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }

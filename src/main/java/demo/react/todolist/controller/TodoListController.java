@@ -4,6 +4,8 @@ import demo.react.todolist.dto.TodoDto;
 import demo.react.todolist.entity.Todo;
 import demo.react.todolist.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,5 +43,14 @@ public class TodoListController {
             return TodoDto.transform(updated);
         }
         return null;
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteTodo(@PathVariable("id") Integer id){
+        Boolean result = service.deleteTodoById(id);
+        if (result){
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        }
+        return ResponseEntity.status(HttpStatus.CONFLICT).build();
     }
 }
